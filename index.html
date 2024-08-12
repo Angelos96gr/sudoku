@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<style>
+    .sudoku_area {
+        display: flex;
+        flex-direction: column;
+        width: 30%
+    }
+
+    #sudoko {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        aspect-ratio: 1;
+
+    }
+
+    .sudo_entry {
+        width: 100%;
+        align-content: center;
+        text-align: center;
+        background-color: rgb(153, 201, 185);
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+
+    #numpad {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        aspect-ratio: 1;
+
+    }
+
+    .num_entry {
+        display: flex;
+        justify-content: center;
+        background-color: blanchedalmond;
+        align-items: center;
+        border: 0.5px solid black;
+        border-radius: 5px;
+    }
+
+    .main_ui {
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: flex-start;
+        height: 50px;
+        align-items: center;
+        background-color: rgb(146, 179, 168);
+        border-radius: 5px;
+    }
+
+    .navbar_item {
+        padding: 5px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .game_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 10%;
+    }
+
+    .timer_mistakes {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .numpad_area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 40px;
+    }
+
+    .timer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .mistakes_counter {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .action_area {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .action_item {
+        text-align: center;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="navbar_item">Home</div>
+        <div class="navbar_item">Score</div>
+    </div>
+
+
+    <div class="main_ui">
+
+
+        <div class="sudoku_area">
+            <div style="text-align: center;">Online Sudoku</div>
+            <div id="sudoko"></div>
+        </div>
+
+        <div class="game_info">
+
+
+            <div class="timer_mistakes">
+                <div class="timer">
+                    <div>Timer</div>
+                    <div>HH:MM:SS</div>
+                </div>
+                <div class="mistakes_counter">
+                    <div>Mistakes</div>
+                    <div id="mistakes"></div>
+                </div>
+            </div>
+
+
+            <button class="action_item" id="restart">Restart</button>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <script src="sudoku.js"></script>
+    <script src="index.js"></script>
+
+
+</body>
+
+</html>
