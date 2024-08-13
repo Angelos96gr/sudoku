@@ -14,7 +14,7 @@
 
     #sudoko {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
         aspect-ratio: 1;
 
     }
@@ -23,7 +23,7 @@
         width: 100%;
         align-content: center;
         text-align: center;
-        background-color: rgb(153, 201, 185);
+        background-color: rgb(153, 201, 177);
         border: 1px solid black;
         border-radius: 5px;
     }
@@ -78,8 +78,9 @@
     .game_info {
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
-        width: 10%;
+        justify-content: center;
+        width: 12%;
+        gap: 20px;
     }
 
     .timer_mistakes {
@@ -139,17 +140,18 @@
 
             <div class="timer_mistakes">
                 <div class="timer">
-                    <div>Timer</div>
-                    <div>HH:MM:SS</div>
+                    <div>Timer: </div>
+                    <div> 00:00</div>
                 </div>
                 <div class="mistakes_counter">
-                    <div>Mistakes</div>
-                    <div id="mistakes"></div>
+                    <div>Mistakes: </div>
+                    <div id="mistakes">0</div>
                 </div>
             </div>
 
 
             <button class="action_item" id="restart">Restart</button>
+            <button class="action_item" id="reset">Reset</button>
 
 
 

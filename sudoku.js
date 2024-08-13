@@ -149,19 +149,29 @@ function init_numpad() {
     }
 }
 
+function getRandomColor(){
 
+    return `rgb(${getRandomInt(200)}, ${getRandomInt(200)}, ${getRandomInt(200)})`
+
+}
+
+function getRandomInt(max){
+    return Math.floor(Math.random()*max+100)
+}
 function populate_sudoku(sudoku) {
 
-    sudoku.removeValues(25)
+    
     const sudo_html = document.querySelector("#sudoko")
     sudo_html.innerHTML = ""
 
-    //console.log(sudoku.printSudoku())
     for (let i = 0; i < sudoku.grid.length; i++) {
+
         for (let j = 0; j < sudoku.grid[i].length; j++) {
 
-            if (typeof (sudoku.grid[i][j]) == "number") {
-                sudo_html.innerHTML += `<input class = "sudo_entry" placeholder=${sudoku.grid[i][j]} value = ${sudoku.grid[i][j]} readonly>`
+
+
+            if (Number(sudoku.grid[i][j]) != 0) {
+                sudo_html.innerHTML += `<input class = "sudo_entry" placeholder=${Number(sudoku.grid[i][j])} value = ${Number(sudoku.grid[i][j])} disabled="disabled">`
             }
             else {
                 //console.log(sudoku.grid[i][j])
@@ -172,7 +182,7 @@ function populate_sudoku(sudoku) {
 
         }
     }
-    sudoku.printSudoku()
+
     return sudoku;
 }
 
@@ -201,6 +211,10 @@ function check_mistake(sudoku) {
     }
 }
 //init_numpad() used to create a numpad in case I want to implement entering values through a numpad instead of typing
+
+
 const sudo = init_sudoku()
-sudo.printSudoku()
-const sudoku = populate_sudoku(sudo)
+const sudo_permanent =JSON.parse(JSON.stringify(sudo))
+console.log(sudo_permanent)
+sudo.removeValues(3)
+const sudo_pop = populate_sudoku(sudo)
