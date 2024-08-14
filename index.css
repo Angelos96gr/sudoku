@@ -1,0 +1,101 @@
+    .sudoku_area {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        gap: 10px
+    }
+
+    #sudoko {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+        aspect-ratio: 1;
+
+    }
+
+    .sudo_entry {
+        width: 100%;
+        align-content: center;
+        text-align: center;
+        background-color: rgb(236, 157, 157);
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+
+    .main_ui {
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .navbar {
+        display: none;
+        justify-content: flex-start;
+        height: 50px;
+        align-items: center;
+        background-color: rgb(146, 179, 168);
+        border-radius: 5px;
+    }
+
+    .navbar_item {
+        padding: 5px;
+        text-decoration: none;
+        color: black;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .game_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 8%;
+        gap: 20px;
+    }
+
+    .timer_mistakes {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .numpad_area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 40px;
+    }
+
+    .timer {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+
+    .counter {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .action_area {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .action_item {
+        text-align: center;
+        border-radius: 5px;
+        background-color:beige;
+        border: 0;
+    }
