@@ -80,7 +80,7 @@ class Sudoku {
     generateSudoku(dif) {
 
         //The first row was filled with random unique values 1 to 9.
-        let num = "123456789"
+        let num = Number("123456789")
         for (let i = 0; num.length > 0 && i < 9; i++) {
             let index = Math.floor(Math.random() * num.length)
             let val = num.substring(index, index + 1)
@@ -138,29 +138,11 @@ class Sudoku {
 
 
 
-function init_numpad() {
-    const num_html = document.querySelector("#numpad")
-    const num_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    for (let i = 0; i < 9; i++) {
 
-        console.log("creating num pad")
-        num_html.innerHTML += `<div class = "num_entry">${num_array[i]}</div>`
 
-    }
-}
-
-function getRandomColor(){
-
-    return `rgb(${getRandomInt(200)}, ${getRandomInt(200)}, ${getRandomInt(200)})`
-
-}
-
-function getRandomInt(max){
-    return Math.floor(Math.random()*max+100)
-}
 function populate_sudoku(sudoku) {
 
-    
+    let pos= 0
     const sudo_html = document.querySelector("#sudoko")
     sudo_html.innerHTML = ""
 
@@ -171,15 +153,15 @@ function populate_sudoku(sudoku) {
 
 
             if (Number(sudoku.grid[i][j]) != 0) {
-                sudo_html.innerHTML += `<input class = "sudo_entry" placeholder=${Number(sudoku.grid[i][j])} value = ${Number(sudoku.grid[i][j])} disabled="disabled">`
+                sudo_html.innerHTML += `<input class = "sudo_entry" placeholder=${Number(sudoku.grid[i][j])} value = ${Number(sudoku.grid[i][j])} name = ${pos} disabled="disabled" autocomplete="off">`
             }
             else {
                 //console.log(sudoku.grid[i][j])
-                sudo_html.innerHTML += `<input class = "sudo_entry">`
+                sudo_html.innerHTML += `<input class = "sudo_entry" name = ${pos} autocomplete="off" >`
 
             }
 
-
+            pos++
         }
     }
 
@@ -190,31 +172,9 @@ function populate_sudoku(sudoku) {
 function init_sudoku() {
     let gt_sudoku = new Sudoku()
     gt_sudoku.generateSudoku(0)
-    //sudoku.printSudoku()
 
     return gt_sudoku;
 }
 
-function check_mistake(sudoku) {
-    sudo_entries = document.querySelectorAll(".sudo_entry")
-    k = 0;
-    for (let i = 0; i < sudoku.grid.length; i++) {
-        for (let j = 0; j < sudoku.grid[i].length; j++) {
-            if (Number(sudo_entries[k].value) != sudoku.grid[i][j]) {
-                console.log("Made mistake")
-            }
-            else {
-                console.log("Correct digit")
-            }
-            k ++
-        }
-    }
-}
-//init_numpad() used to create a numpad in case I want to implement entering values through a numpad instead of typing
 
 
-const sudo = init_sudoku()
-const sudo_permanent =JSON.parse(JSON.stringify(sudo))
-console.log(sudo_permanent)
-sudo.removeValues(3)
-const sudo_pop = populate_sudoku(sudo)

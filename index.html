@@ -9,7 +9,8 @@
     .sudoku_area {
         display: flex;
         flex-direction: column;
-        width: 30%
+        width: 30%;
+        gap: 10px
     }
 
     #sudoko {
@@ -23,28 +24,11 @@
         width: 100%;
         align-content: center;
         text-align: center;
-        background-color: rgb(153, 201, 177);
+        background-color: rgb(236, 157, 157);
         border: 1px solid black;
         border-radius: 5px;
     }
 
-
-    #numpad {
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 1fr 1fr 1fr;
-        aspect-ratio: 1;
-
-    }
-
-    .num_entry {
-        display: flex;
-        justify-content: center;
-        background-color: blanchedalmond;
-        align-items: center;
-        border: 0.5px solid black;
-        border-radius: 5px;
-    }
 
     .main_ui {
         display: flex;
@@ -59,7 +43,7 @@
     }
 
     .navbar {
-        display: flex;
+        display: none;
         justify-content: flex-start;
         height: 50px;
         align-items: center;
@@ -69,6 +53,8 @@
 
     .navbar_item {
         padding: 5px;
+        text-decoration: none;
+        color: black;
     }
 
     .title {
@@ -79,7 +65,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 12%;
+        width: 8%;
         gap: 20px;
     }
 
@@ -99,9 +85,10 @@
     .timer {
         display: flex;
         justify-content: space-between;
+        
     }
 
-    .mistakes_counter {
+    .counter {
         display: flex;
         justify-content: space-between;
     }
@@ -117,13 +104,14 @@
     .action_item {
         text-align: center;
         border-radius: 5px;
+        background-color:beige;
+        border: 0;
     }
 </style>
 
 <body>
     <div class="navbar">
-        <div class="navbar_item">Home</div>
-        <div class="navbar_item">Score</div>
+
     </div>
 
 
@@ -131,7 +119,7 @@
 
 
         <div class="sudoku_area">
-            <div style="text-align: center;">Online Sudoku</div>
+            <div style="text-align: center; font-weight: bold;">Online Sudoku</div>
             <div id="sudoko"></div>
         </div>
 
@@ -140,11 +128,16 @@
 
             <div class="timer_mistakes">
                 <div class="timer">
-                    <div>Timer: </div>
-                    <div> 00:00</div>
+                    <div>Timer </div>
+                    <div id= "minutes"> 00</div>:
+                    <div id="seconds"> 00</div>
                 </div>
-                <div class="mistakes_counter">
-                    <div>Mistakes: </div>
+                <div class="counter">
+                    <div>Attempts </div>
+                    <div id="attempts">0</div>
+                </div>
+                <div class="counter">
+                    <div>Mistakes </div>
                     <div id="mistakes">0</div>
                 </div>
             </div>
