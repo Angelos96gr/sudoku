@@ -157,7 +157,7 @@ function populate_sudoku(sudoku) {
             }
             else {
                 //console.log(sudoku.grid[i][j])
-                sudo_html.innerHTML += `<input class = "sudo_entry" name = ${pos} autocomplete="off" >`
+                sudo_html.innerHTML += `<input class = "sudo_entry toFill" name = ${pos} disabled="disabled"  autocomplete="off" >`
 
             }
 

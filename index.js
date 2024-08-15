@@ -1,14 +1,25 @@
-const restart = document.querySelector("#restart")
+const start = document.querySelector("#start")
 const reset = document.querySelector("#reset")
+const restart = document.querySelector("#restart")
+const help = document.querySelector("#help");
+const popup = document.querySelector("#popup");
+
 const mistakeCounter = document.querySelector("#mistakes")
 const attemptsCounter = document.querySelector("#attempts")
 const timerSecs = document.querySelector("#seconds")
-const minsSecs = document.querySelector("#minutes")
+const timerMins = document.querySelector("#minutes")
+let setTimer;
 
-const color_palette = ["rgb(132, 159, 178)", "rgb(220, 202, 175)", "rgb(195, 194, 165)",  "rgb(195, 165, 165)", "rgb(236, 157, 157)", "rgb(192, 224, 224)", "bisque", "azure","rgb(195, 165, 190)"]
+
+const color_palette = ["rgb(132, 159, 178)", "rgb(220, 202, 175)", "rgb(195, 194, 165)", "rgb(195, 165, 165)", "rgb(236, 157, 157)", "rgb(192, 224, 224)", "bisque", "azure", "rgb(195, 165, 190)"]
 let ongoinSecs = 0
 let ongoinMins = 0
 
+
+function shuffleColors() {
+
+
+}
 
 // Intialize sudoku
 const sudo = init_sudoku()
@@ -17,20 +28,35 @@ console.log(sudo_permanent)
 sudo.removeValues(50)
 const sudo_pop = populate_sudoku(sudo)
 
+// Initialize js actions(event listeners, formatting, interactions)
 __init__()
 
 
 
-function Timer(){
-    
+function Timer() {
+
+
+    timerSecs.innerText = formatTime(ongoinSecs)
+    timerMins.innerText = formatTime(ongoinMins)
 
     ongoinSecs++
-    timerSecs.innerText = ongoinSecs
-    if (ongoinSecs == 59){
+
+    if (ongoinSecs == 60) {
         ongoinSecs = 0
-        ongoinMins ++
-        minsSecs.innerText = ongoinMins
+        ongoinMins++
     }
+}
+
+function formatTime(time) {
+
+    return (String(time).length < 2) ? "0" + String(time) : String(time)
+}
+
+
+function stopTimer() {
+    timerSecs.innerText = formatTime(ongoinSecs)
+    timerMins.innerText = formatTime(ongoinMins)
+
 }
 
 
@@ -148,7 +174,7 @@ function updateBackColor() {
 
     for (let sudoEntry of sudoEntries) {
 
-        Object.entries(colorMap).forEach((el) =>{
+        Object.entries(colorMap).forEach((el) => {
             if (el[1].includes(Number(sudoEntry.name))) {
                 sudoEntry.style.backgroundColor = el[0]
             }
@@ -164,29 +190,92 @@ function resetCounters() {
     attemptsCounter.innerText = 0;
 }
 
+
+function blockEntries() {
+    sudoEntries = document.querySelectorAll(".sudo_entry")
+    for (let sudoEntry of sudoEntries) {
+
+        sudoEntry.disabled = true 
+    }
+}
+
+function unBlockEntries() {
+    sudoEntries = document.querySelectorAll(".sudo_entry")
+    for (let sudoEntry of sudoEntries) {
+
+        sudoEntry.disabled = (sudoEntry.classList.contains('toFill')) ? false :true
+    }
+}
+
+
 function __init__() {
 
     initSudolisteners()
     updateBackColor()
-    setInterval(Timer, 1000)
-    restart.addEventListener("click", (e) => {
-        console.log("Restarting sudoku")
-        location.reload()
-        resetCounters()
-        initSudolisteners()
-        updateBackColor()
+
+
+    start.addEventListener("click", () => {
+
+        if (["Start", "Resume"].includes(start.innerText)) {
+            setTimer = setInterval(Timer, 1000)
+            start.innerText = "Pause"
+            unBlockEntries()
+
+
+        }
+        else {
+            clearInterval(setTimer)
+            setInterval(stopTimer, 1000)
+            start.innerText = "Resume"
+            blockEntries()
+
+
+        }
+
 
     })
+
+
+    help.addEventListener("click", () => {
+
+        if (["hidden", ""].includes(popup.style.visibility)) {
+            popup.style.visibility = "visible"
+        }
+        else {
+            popup.style.visibility = "hidden"
+        }
+
+    })
+
 
     reset.addEventListener("click", () => {
         resetCounters()
         populate_sudoku(sudo)
         initSudolisteners()
-        updateBackColor() 
+        unBlockEntries()
+        updateBackColor()
 
     })
+
+    restart.addEventListener("click", (e) => {
+        console.log("Restarting sudoku")
+        location.reload()
+        resetCounters()
+        initSudolisteners()
+        blockEntries()
+        resetButtons()
+        updateBackColor()
+
+    })
+
+
 }
 
+
+function resetButtons() {
+    start.innerText = "Start"
+
+}
 
 
 
