@@ -3,6 +3,7 @@ const reset = document.querySelector("#reset")
 const restart = document.querySelector("#restart")
 const help = document.querySelector("#help");
 const popup = document.querySelector("#popup");
+const winnerPopup = document.querySelector("#winner")
 
 const mistakeCounter = document.querySelector("#mistakes")
 const attemptsCounter = document.querySelector("#attempts")
@@ -15,11 +16,6 @@ const color_palette = ["rgb(132, 159, 178)", "rgb(220, 202, 175)", "rgb(195, 194
 let ongoinSecs = 0
 let ongoinMins = 0
 
-
-function shuffleColors() {
-
-
-}
 
 // Intialize sudoku
 const sudo = init_sudoku()
@@ -86,8 +82,12 @@ function checkMistake(sudoEntry) {
         console.log(`Correct entry, there are still ${checkMissing(ongoinSudo)} elements in the grid`)
 
         if (checkMissing(ongoinSudo) == 0) {
-            alert(`You won this game with ${attemptsCounter.innerText} attempts`)
+            winnerPopup.style.display = "flex"
+            clearInterval(setTimer)
+            setInterval(stopTimer, 1000)
         }
+
+
     }
     else {
         console.log("Incorrect entry")
@@ -195,7 +195,7 @@ function blockEntries() {
     sudoEntries = document.querySelectorAll(".sudo_entry")
     for (let sudoEntry of sudoEntries) {
 
-        sudoEntry.disabled = true 
+        sudoEntry.disabled = true
     }
 }
 
@@ -203,7 +203,7 @@ function unBlockEntries() {
     sudoEntries = document.querySelectorAll(".sudo_entry")
     for (let sudoEntry of sudoEntries) {
 
-        sudoEntry.disabled = (sudoEntry.classList.contains('toFill')) ? false :true
+        sudoEntry.disabled = (sudoEntry.classList.contains('toFill')) ? false : true
     }
 }
 
@@ -238,11 +238,11 @@ function __init__() {
 
     help.addEventListener("click", () => {
 
-        if (["hidden", ""].includes(popup.style.visibility)) {
-            popup.style.visibility = "visible"
+        if (["none", ""].includes(popup.style.display)) {
+            popup.style.display = "flex"
         }
         else {
-            popup.style.visibility = "hidden"
+            popup.style.display = "none"
         }
 
     })
@@ -253,6 +253,7 @@ function __init__() {
         populate_sudoku(sudo)
         initSudolisteners()
         unBlockEntries()
+        resetPopup()
         updateBackColor()
 
     })
@@ -274,6 +275,11 @@ function __init__() {
 
 function resetButtons() {
     start.innerText = "Start"
+
+}
+
+function resetPopup(){
+    winnerPopup.style.display = "none"
 
 }
 
