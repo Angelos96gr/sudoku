@@ -7,4 +7,7 @@ The app currently supports the following features:
 - The user can select to reset (clear all entries of the current game) or restart (generate a new sudoku puzzle)
 - There are certain user input validation such as not registering special keyboard keys or characters
 
-  ![image](https://github.com/user-attachments/assets/6b6b809c-8739-4a9e-a5ae-4eb27c129b47)
+  
+![image](https://github.com/user-attachments/assets/458be40f-d6e9-45b6-9d87-d2e25a07b88d)
+
+  
