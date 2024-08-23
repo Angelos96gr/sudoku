@@ -1,4 +1,4 @@
-This is an Sudoku webapp. 
+This is an online Sudoku. 
 
 The app currently supports the following features:
 
